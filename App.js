@@ -1,17 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import User from './pages/userp';
-import Feed from './pages/scrollp';
+import React from 'react'
+import { StyleSheet, View } from 'react-native';
+import MainStack from './navigate'
 
 export default function App() {
   return (
-    <View>
-      <Feed/>
-      {/* <User/> */}
-    </View>
+      <MainStack />
   );
 }
 
-const styles = StyleSheet.create({
+// const styles = StyleSheet.create({
 
-});
+// });
