@@ -1,5 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, ScrollView, Image} from 'react-native';
+import { MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+
 
 export default function Feed({navigation}){
 
@@ -10,7 +12,7 @@ export default function Feed({navigation}){
     return(
         <View style={styles.genFeed}>
             <View style={styles.storyBar}>
-                <ScrollView style={{width: '100%', height: '100%'}} contentContainerStyle={{ alignItems: 'center'}} horizontal={true}>
+                <ScrollView style={{width: '100%', height: '100%'}} contentContainerStyle={{ alignItems: 'center'}} horizontal={true} showsHorizontalScrollIndicator={false}>
                     <View style={styles.storyIcon} />
                     {/* <Image
                         style={styles.storyIcon}
@@ -68,16 +70,22 @@ export default function Feed({navigation}){
                 /> */}
                 <View style={styles.buttonSec}>
                     <View style={styles.likeSec}>
-                        <View style={{marginTop: 20, borderRadius: '50%', borderColor: '#970D75', width: 30, height: 30, borderWidth: 4}}></View>
-                        <Text style={{fontWeight: 'bold', textAlign: 'right', paddingRight: 20, width: '100%', fontSize: 16, color: 'white'}}>12</Text>
+                        {/* <View style={{marginTop: 20, borderRadius: '50%', borderColor: '#970D75', width: 30, height: 30, borderWidth: 4}}></View> */}
+                        <AntDesign name="hearto" size={35} color="#970D75" style={styles.iconsStyle} />
+
+                        <Text style={{fontWeight: 'bold', width: '50%', textAlign: 'right', fontSize: 16, color: 'white'}}>12</Text>
                     </View>
                     <View style={styles.commSec}>
-                        <View style={{marginTop: 20, borderRadius: '50%', borderColor: '#0E95B9', width: 30, height: 30, borderWidth: 4}}></View>
-                        <Text style={{fontWeight: 'bold', textAlign: 'right', paddingRight: 20, width: '100%', fontSize: 16, color: 'white'}}>3</Text>
+                        {/* <View style={{marginTop: 20, borderRadius: '50%', borderColor: '#0E95B9', width: 30, height: 30, borderWidth: 4}}></View> */}
+                        <FontAwesome name="comment-o" size={30} color="white" style={{width: '100%', position: 'absolute', paddingLeft: 15, paddingBottom: 10, paddingTop: 11, height: '100%'}}/>
+
+                        <Text style={{fontWeight: 'bold', width: '50%', textAlign: 'right', fontSize: 16, color: 'white'}}>3</Text>
                     </View>
                     <View style={styles.shareSec}>
-                        <View style={{marginTop: 20, borderColor: '#0E95B9', width: 30, height: 30, borderWidth: 4}}></View>
-                        <Text style={{fontWeight: 'bold', textAlign: 'right', paddingRight: 20, width: '100%', fontSize: 16, color: 'white'}}>1</Text>
+                        {/* <View style={{marginTop: 20, borderColor: '#0E95B9', width: 30, height: 30, borderWidth: 4}}></View> */}
+                        <MaterialIcons name="ios-share" size={30} color="white" style={{width: '100%', position: 'absolute', paddingLeft: 15, paddingBottom: 10, paddingTop: 11, height: '100%'}}/>
+
+                        <Text style={{fontWeight: 'bold', width: '50%', textAlign: 'right', fontSize: 16, color: 'white'}}>1</Text>
                     </View>
                 </View>
             </View>
@@ -232,6 +240,15 @@ const styles = StyleSheet.create({
         marginRight: 3,
         marginTop: 10,
         paddingTop: 25,
+    },
+
+    iconsStyle: {
+        paddingTop: 11, 
+        width: '100%', 
+        height: '100%', 
+        position: 'absolute', 
+        paddingLeft: 15
+
     }
 
 });

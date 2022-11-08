@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text, Image } from 'react-native';
+import { MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
 
 export default function UserPhoto({route}) {
 
@@ -11,7 +12,7 @@ export default function UserPhoto({route}) {
                 <View style={styles.profileIcon}></View>
                 <Text style={styles.profileNick}>userpick_1</Text>
             </View>
-            <View style={{height: 480, backgroundColor: '#273746', borderRadius: 15, justifyContent: 'center', paddingLeft: 15}}>
+            <View style={{height: 480, backgroundColor: '#273746', borderRadius: 15, justifyContent: 'center', paddingLeft: 15, marginTop: 2}}>
                 <Image
                     source={{
                         width: '97%',
@@ -24,13 +25,18 @@ export default function UserPhoto({route}) {
             <View style={styles.buttonSec}>
 
                 <View style={styles.likeSec}>
-                    <View style={{marginTop: 20, borderRadius: '50%', borderColor: '#970D75', width: 30, height: 30, borderWidth: 4}}></View>
-                    <Text style={{fontWeight: 'bold', textAlign: 'right', paddingRight: 20, width: '100%', fontSize: 16, color: 'white'}}>12</Text>
+                    {/* <View style={{marginTop: 20, borderRadius: '50%', borderColor: '#970D75', width: 30, height: 30, borderWidth: 4}}></View> */}
+                    <AntDesign name="hearto" size={35} color="#970D75" style={styles.iconsStyle} />
+
+
+                    <Text style={{fontWeight: 'bold', textAlign: 'right', width: '50%', fontSize: 16, color: 'white'}}>12</Text>
                 </View>
 
                 <View style={styles.shareSec}>
-                    <View style={{marginTop: 20, borderColor: '#0E95B9', width: 30, height: 30, borderWidth: 4}}></View>
-                    <Text style={{fontWeight: 'bold', textAlign: 'right', paddingRight: 20, width: '100%', fontSize: 16, color: 'white'}}>1</Text>
+                    {/* <View style={{marginTop: 20, borderColor: '#0E95B9', width: 30, height: 30, borderWidth: 4}}></View> */}
+                    <MaterialIcons name="ios-share" size={30} color="white" style={{width: '100%', position: 'absolute', paddingLeft: 15, paddingBottom: 10, paddingTop: 11, height: '100%'}}/>
+
+                    <Text style={{fontWeight: 'bold', textAlign: 'right', width: '50%', fontSize: 16, color: 'white'}}>1</Text>
                 </View>
                 
             </View>
@@ -176,6 +182,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white'
     },
+
+    iconsStyle: {
+        paddingTop: 11, 
+        width: '100%', 
+        height: '100%', 
+        position: 'absolute', 
+        paddingLeft: 15
+
+    }
 
 
 });
