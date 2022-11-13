@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, ScrollView, Button, Image, TouchableOpacity, FlatList } from 'react-native';
+import { MaterialIcons, FontAwesome, AntDesign, MaterialCommunityIcons, Ionicons} from '@expo/vector-icons';
 
 export default function User({navigation}) {
 
@@ -34,8 +35,8 @@ export default function User({navigation}) {
 
       </View>
 
-      <View style={styles.secondsb} >
-        <View style={{paddingTop: 4.5,borderRadius: 15, width: 408, height: 570, backgroundColor: '#273746'}}>
+      <View style={styles.mainFeed} >
+
           <View style={{width: 403, height: 561}}>
             <FlatList data={imgs} renderItem={({item}) => (
               <TouchableOpacity onPress={() => navigation.navigate('UserPhoto', item)} >
@@ -44,19 +45,29 @@ export default function User({navigation}) {
                       width: 150,
                       height: 150,
                       uri: item.image
-                    }}
+                    }} style={{margin: 3}}
                 />
               </TouchableOpacity>
             )} />
           </View>
-        </View>
+        
       </View>
 
-      <View style={styles.secondsb} >
-        <View style={{borderRadius: 15, width: 408, height: 110, backgroundColor: '#273746'}}>
-          <Button title='Feed' onPress={loadScene} />
-        </View>
+      <View style={styles.menu}>
+
+        <TouchableOpacity style={{height: '100%', width: 134, alignItems: 'center', justifyContent: 'center', paddingBottom: 30}}>
+          <Ionicons onPress={loadScene} name="home-outline" size={30} color="white" />
+        </TouchableOpacity>
+        <TouchableOpacity style={{height: '100%', width: 134, alignItems: 'center', marginLeft: 2, justifyContent: 'center', paddingBottom: 30}}>
+          <Ionicons name="md-add" size={35} color="white" />
+        </TouchableOpacity>
+        <TouchableOpacity style={{height: '100%', width: 134, alignItems: 'center', marginLeft: 2, justifyContent: 'center', paddingBottom: 30}}>
+          <MaterialCommunityIcons name="account-supervisor-circle" size={35} color="white" />
+        </TouchableOpacity>
+
+
       </View>
+      
 
     </View>
   );
@@ -68,10 +79,17 @@ const styles = StyleSheet.create({
     paddingRight: 3,
     paddingTop: 68},
 
-  secondsb: {
-    paddingLeft: 3,
-    paddingRight: 3,
-    paddingTop: 10
+  menu:{
+    borderRadius: 15, 
+    width: 408, 
+    height: 110, 
+    backgroundColor: '#273746',
+    marginLeft: 3,
+    marginRight: 3,
+    marginTop: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row'
   },
 
   firstrow: {
@@ -109,5 +127,16 @@ const styles = StyleSheet.create({
     width: 130,
     height: 130,
     backgroundColor: '#FFF',
-  }
+  },
+
+  mainFeed:{
+    borderRadius: 15, 
+    width: 408, 
+    height: 570, 
+    marginLeft: 3,
+    marginRight: 3,
+    marginTop: 10,
+    backgroundColor: '#273746',
+    
+},
 });

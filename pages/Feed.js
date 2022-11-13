@@ -1,6 +1,8 @@
-import React from 'react'
-import { StyleSheet, Text, View, Button, ScrollView, Image} from 'react-native';
-import { MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+import React, {useState} from 'react'
+import { StyleSheet, Text, View, Button, ScrollView, Image, Touchable, TouchableOpacity} from 'react-native';
+import { MaterialIcons, FontAwesome, AntDesign, MaterialCommunityIcons, Ionicons} from '@expo/vector-icons';
+
+
 
 
 export default function Feed({navigation}){
@@ -8,6 +10,10 @@ export default function Feed({navigation}){
     const loadScene = () => {
         navigation.navigate('User');
     }
+
+    const [iconName, setIconName] = useState("heart-outline");
+    const [count, setCount] = useState(12);
+
 
     return(
         <View style={styles.genFeed}>
@@ -71,9 +77,23 @@ export default function Feed({navigation}){
                 <View style={styles.buttonSec}>
                     <View style={styles.likeSec}>
                         {/* <View style={{marginTop: 20, borderRadius: '50%', borderColor: '#970D75', width: 30, height: 30, borderWidth: 4}}></View> */}
-                        <AntDesign name="hearto" size={35} color="#970D75" style={styles.iconsStyle} />
+                        <TouchableOpacity onPress={() => {
+                            if(iconName == "heart-outline"){
+                                setIconName("heart")
+                                setCount(prev => prev + 1)
+                            }
+                            if(iconName == "heart"){
+                                
+                                setCount(prev => prev - 1)
+                                setIconName("heart-outline")
+                                
+                            }
+                        }} style={styles.likeSec}>
+                            <MaterialCommunityIcons name={iconName} size={35} color="#970D75" /> 
+                            <Text style={{fontWeight: 'bold', width: '50%', textAlign: 'center', fontSize: 16, color: 'white'}}>{count}</Text>
+                        </TouchableOpacity>
 
-                        <Text style={{fontWeight: 'bold', width: '50%', textAlign: 'right', fontSize: 16, color: 'white'}}>12</Text>
+                        
                     </View>
                     <View style={styles.commSec}>
                         {/* <View style={{marginTop: 20, borderRadius: '50%', borderColor: '#0E95B9', width: 30, height: 30, borderWidth: 4}}></View> */}
@@ -91,7 +111,15 @@ export default function Feed({navigation}){
             </View>
 
             <View style={styles.menu}>
-                <Button title='YourPage' onPress={loadScene} />
+                <TouchableOpacity style={{height: '100%', width: 134, alignItems: 'center', justifyContent: 'center', paddingBottom: 30}}>
+                    <Ionicons name="home" size={30} color="white" />
+                </TouchableOpacity>
+                <TouchableOpacity style={{height: '100%', width: 134, alignItems: 'center', marginLeft: 2, justifyContent: 'center', paddingBottom: 30}}>
+                    <Ionicons name="md-add" size={35} color="white" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={loadScene} style={{height: '100%', width: 134, alignItems: 'center', marginLeft: 2, justifyContent: 'center', paddingBottom: 30}}>
+                    <MaterialCommunityIcons name="account-supervisor-circle-outline" size={35} color="white" />
+                </TouchableOpacity>
             </View>
 
         </View>
@@ -196,9 +224,10 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 15,
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        
         
     },
     commSec:{
@@ -239,16 +268,18 @@ const styles = StyleSheet.create({
         marginLeft: 3,
         marginRight: 3,
         marginTop: 10,
-        paddingTop: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
     },
 
-    iconsStyle: {
+    iconsStyle:{
+        alignItems: 'center',
         paddingTop: 11, 
         width: '100%', 
         height: '100%', 
-        position: 'absolute', 
-        paddingLeft: 15
+        paddingLeft: 15,
+        position: 'absolute'
 
     }
-
 });
