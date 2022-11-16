@@ -1,8 +1,15 @@
-import React from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { MaterialIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+import React, {useState} from 'react'
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons, FontAwesome, AntDesign, MaterialIcons } from '@expo/vector-icons';
 
 export default function UserPhoto({route}) {
+
+
+    const [iconName, setIconName] = useState("heart-outline");
+    const [count, setCount] = useState(12);
+
+
+
 
   return (
 
@@ -26,17 +33,37 @@ export default function UserPhoto({route}) {
 
                 <View style={styles.likeSec}>
                     {/* <View style={{marginTop: 20, borderRadius: '50%', borderColor: '#970D75', width: 30, height: 30, borderWidth: 4}}></View> */}
-                    <AntDesign name="hearto" size={35} color="#970D75" style={styles.iconsStyle} />
+                    <TouchableOpacity onPress={() => {
+                            if(iconName == "heart-outline"){
+                                setIconName("heart")
+                                setCount(prev => prev + 1)
+                            }
+                            if(iconName == "heart"){
+                                
+                                setCount(prev => prev - 1)
+                                setIconName("heart-outline")
+                                
+                            }
+                        }} style={styles.likeSec}>
+                            <MaterialCommunityIcons name={iconName} size={35} color="#970D75" /> 
+                            <Text style={{fontWeight: 'bold', width: '50%', textAlign: 'center', fontSize: 16, color: 'white'}}>{count}</Text>
+                    </TouchableOpacity>
 
 
-                    <Text style={{fontWeight: 'bold', textAlign: 'right', width: '50%', fontSize: 16, color: 'white'}}>12</Text>
+                    
                 </View>
 
                 <View style={styles.shareSec}>
                     {/* <View style={{marginTop: 20, borderColor: '#0E95B9', width: 30, height: 30, borderWidth: 4}}></View> */}
-                    <MaterialIcons name="ios-share" size={30} color="white" style={{width: '100%', position: 'absolute', paddingLeft: 15, paddingBottom: 10, paddingTop: 11, height: '100%'}}/>
 
-                    <Text style={{fontWeight: 'bold', textAlign: 'right', width: '50%', fontSize: 16, color: 'white'}}>1</Text>
+                    <TouchableOpacity style={styles.shareSec}>
+
+                        <MaterialIcons name="ios-share" size={30} color="white" style={{width: '100%', position: 'absolute', paddingLeft: 15, paddingBottom: 10, paddingTop: 11, height: '100%'}}/>
+
+                        <Text style={{fontWeight: 'bold', textAlign: 'right', width: '50%', fontSize: 16, color: 'white'}}>1</Text>
+
+                    </TouchableOpacity>
+                    
                 </View>
                 
             </View>
@@ -136,7 +163,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 15,
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
         
@@ -168,7 +195,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
         marginLeft: 2,
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
     },

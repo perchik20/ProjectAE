@@ -9,8 +9,16 @@ export default function User({navigation}) {
   }
 
   const [imgs, setImgs] = useState([
-    {name: 'forest', image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg', full_image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'},
-    {name: 'heart', image: 'https://thumbs.dreamstime.com/b/rainbow-love-heart-background-red-wood-60045149.jpg', full_image: 'https://thumbs.dreamstime.com/b/rainbow-love-heart-background-red-wood-60045149.jpg'}
+
+    {name: 'forest', image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg', 
+    full_image: 'https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg'},
+
+    {name: 'heart', image: 'https://thumbs.dreamstime.com/b/rainbow-love-heart-background-red-wood-60045149.jpg', 
+    full_image: 'https://thumbs.dreamstime.com/b/rainbow-love-heart-background-red-wood-60045149.jpg'},
+
+    {name: 'batmen', image: 'https://thumbs.dreamstime.com/b/rainbow-love-heart-background-red-wood-60045149.jpg', 
+    full_image: 'https://thumbs.dreamstime.com/b/rainbow-love-heart-background-red-wood-60045149.jpg'}
+
   ])
 
 
@@ -18,7 +26,7 @@ export default function User({navigation}) {
     <View style={{backgroundColor: '#696969'}}>
 
       <View style={styles.mainb} >
-        <View style={{borderRadius: 15, width: 408, height: 140, backgroundColor: '#273746'}}>
+        <View style={{borderRadius: 15, width: 408, height: 260, backgroundColor: '#273746'}}>
           <View style={{left: 20, top: 20}}>
              <View style={styles.mainphoto} />
           </View>
@@ -37,13 +45,13 @@ export default function User({navigation}) {
 
       <View style={styles.mainFeed} >
 
-          <View style={{width: 403, height: 561}}>
+          <View style={{padding: 10,width: 403, height: 561}}>
             <FlatList data={imgs} renderItem={({item}) => (
               <TouchableOpacity onPress={() => navigation.navigate('UserPhoto', item)} >
                 <Image
                     source={{
-                      width: 150,
-                      height: 150,
+                      width: 130,
+                      height: 130,
                       uri: item.image
                     }} style={{margin: 3}}
                 />
@@ -53,7 +61,7 @@ export default function User({navigation}) {
         
       </View>
 
-      <View style={styles.menu}>
+      {/* <View style={styles.menu}>
 
         <TouchableOpacity style={{height: '100%', width: 134, alignItems: 'center', justifyContent: 'center', paddingBottom: 30}}>
           <Ionicons onPress={loadScene} name="home-outline" size={30} color="white" />
@@ -66,7 +74,7 @@ export default function User({navigation}) {
         </TouchableOpacity>
 
 
-      </View>
+      </View> */}
       
 
     </View>
@@ -77,7 +85,8 @@ const styles = StyleSheet.create({
   mainb: {
     paddingLeft: 3,
     paddingRight: 3,
-    paddingTop: 68},
+    paddingTop: 68
+  },
 
   menu:{
     borderRadius: 15, 
@@ -132,7 +141,7 @@ const styles = StyleSheet.create({
   mainFeed:{
     borderRadius: 15, 
     width: 408, 
-    height: 570, 
+    height: 450, 
     marginLeft: 3,
     marginRight: 3,
     marginTop: 10,

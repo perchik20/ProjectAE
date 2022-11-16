@@ -1,47 +1,91 @@
-import React from 'react'
-import User from './pages/User';
-import Feed from './pages/Feed';
-import UserPhoto from './pages/UserPhoto';
+import * as React from 'react'
 
-import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons, FontAwesome, AntDesign, MaterialIcons } from '@expo/vector-icons';
+import {FeedStackNavigator, UserStackNavigator} from './StackNaviagation'
 
+// Screns
+import User from './pages/User'
+import Feed from './pages/Feed'
+import AddPhoto from './pages/AddPhoto'
 
-const Stack = createStackNavigator();
+//Screen names
+const userName = 'User';
+const feedName = 'Feed';
+const addName = 'AddPhoto';
+
+const Tab = createBottomTabNavigator()
 
 export default function Navigate() {
-  return <NavigationContainer>
-        <Stack.Navigator>
+  return (
+    <NavigationContainer>
+        <Tab.Navigator
+            initialRouteName={userName}
+            screenOptions={({route}) => ({
+                tabBarIcon: ({focused, color, size}) => { 
+                    let iconName;
+                    let rn = route.name;
 
-            <Stack.Screen
-            name="Feed"
-            component={Feed}
-            options={{
-                title: 'Feed',
-                headerStyle: {height: 0, backgroundColor: '#696969'}
-                }
-            }
-            />
-            <Stack.Screen
-            name="User"
-            component={User}
-            options={{
-                title: 'UserName',
-                headerStyle: {height: 0, backgroundColor: '#696969', }
-                }
-            }
-            />
-            <Stack.Screen
-            name="UserPhoto"
-            component={UserPhoto}
-            options={{
-                title: 'UserPhoto',
-                headerStyle: {height: 0, backgroundColor: '#696969', }
-                }
-            }
-            />
+                    if(rn === userName){
+                        iconName = focused ? 'account-supervisor-circle' : 'account-supervisor-circle-outline';
+                    }else if (rn === feedName) {
+                        iconName = focused ? 'home-variant' : 'home-variant-outline';
+                    }else if (rn === addName) {
+                        iconName = focused ? 'plus-thick' : 'plus-outline';
+                    }
 
-        </Stack.Navigator>
-    </NavigationContainer>;
+                    return <MaterialCommunityIcons name={iconName} size={35} color={color} />
+
+                },
+            })}>
+
+            <Tab.Screen name={feedName} component={FeedStackNavigator} options={{
+                headerShown: false,
+                tabBarShowLabel: false,
+                tabBarActiveTintColor: 'white',
+                tabBarInactiveTintColor: 'white',
+                tabBarLabelStyle: {
+                    fontSize: 15,
+                    size: 40,
+                    fontColor: 'black',
+                    
+                },
+                 tabBarStyle: {backgroundColor: '#273746', borderRadius: 15, width: 408, marginLeft: 3, marginTop: -55}}}/>
+
+
+            <Tab.Screen name={addName} component={AddPhoto} options={{
+                headerShown: false,
+                tabBarShowLabel: false,
+                tabBarActiveTintColor: 'white',
+                tabBarInactiveTintColor: 'white',
+                tabBarLabelStyle: {
+                    fontSize: 15,
+                    size: 40,
+                    fontColor: 'black',
+                    
+                },
+                tabBarStyle: {backgroundColor: '#273746', borderRadius: 15, width: 408, marginLeft: 3, marginTop: -55}}}/>
+
+            <Tab.Screen name={userName} component={UserStackNavigator} options={{
+                // tabBarBadge: 12,
+                headerShown: false,
+                tabBarShowLabel: false,
+                tabBarActiveTintColor: 'white',
+                tabBarInactiveTintColor: 'white',
+                tabBarLabelStyle: {
+                    fontSize: 15,
+                    size: 40,
+                    fontColor: 'black'
+                },
+                    tabBarStyle: {backgroundColor: '#273746', borderRadius: 15, width: 408, marginLeft: 3, marginTop: -55}}}/>
+
+                
+
+        </Tab.Navigator>
+
+    </NavigationContainer>
+
+    
+  );
 }
-

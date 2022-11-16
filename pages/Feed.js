@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import { StyleSheet, Text, View, Button, ScrollView, Image, Touchable, TouchableOpacity} from 'react-native';
-import { MaterialIcons, FontAwesome, AntDesign, MaterialCommunityIcons, Ionicons} from '@expo/vector-icons';
+import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, FlatList} from 'react-native';
+import { MaterialIcons, FontAwesome, MaterialCommunityIcons, Ionicons} from '@expo/vector-icons';
 
 
 
@@ -15,50 +15,32 @@ export default function Feed({navigation}){
     const [count, setCount] = useState(12);
 
 
+    const [imgs, setImgs] = useState([
+        {name: 'user', image: require('./img/sceleton.png')},
+        {name: 'user1', image: require('./img/egg.png')}
+      ])
+
     return(
+        
         <View style={styles.genFeed}>
             <View style={styles.storyBar}>
-                <ScrollView style={{width: '100%', height: '100%'}} contentContainerStyle={{ alignItems: 'center'}} horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <View style={styles.storyIcon} />
-                    {/* <Image
-                        style={styles.storyIcon}
-                        source={require('./img/store1.jpg')}
-                    /> */}
-                    <View style={styles.storyIcon} />
-                    {/* <Image
-                        style={styles.storyIcon}
-                        source={require('./img/store2.png')}
-                    /> */}
-                    <View style={styles.storyIcon} />
-                    {/* <Image
-                        style={styles.storyIcon}
-                        source={require('./img/store3.jpg')}
-                    /> */}
-                    <View style={styles.storyIcon} />
-                    {/* <Image
-                        style={styles.storyIcon}
-                        source={require('./img/stpre4.jpg')}
-                    /> */}
-                    <View style={styles.storyIcon} />
-                    {/* <Image
-                        style={styles.storyIcon}
-                        source={require('./img/store5.png')}
-                    /> */}
-                    <View style={styles.storyIcon} />
-                    {/* <Image
-                        style={styles.storyIcon}
-                        source={require('./img/store6.jpg')}
-                    /> */}
-                    <View style={styles.storyIcon} />
-                    {/* <Image
-                        style={styles.storyIcon}
-                        source={require('./img/store7.jpg')}
-                    /> */}
+                <ScrollView style={{width: '100%', height: '100%'}} contentContainerStyle={{ alignItems: 'center', justifyContent: 'center'}} horizontal={true} showsHorizontalScrollIndicator={false}>
+                    <FlatList numColumns={imgs.length} data={imgs} renderItem={({item}) => (
+                        <TouchableOpacity onPress={() => navigation.navigate('FullStore', item)} >
+                            <Image
+                                style={styles.storyIcon}
+                                source={item.image}
+                            />
+                        </TouchableOpacity>
+                    )} />
+                    
                 </ScrollView>
                 
                 
 
-            </View>
+            </View>    
+
+           
 
             <View style={styles.mainFeed}>
                 <View style={styles.profileBar}>
@@ -97,20 +79,32 @@ export default function Feed({navigation}){
                     </View>
                     <View style={styles.commSec}>
                         {/* <View style={{marginTop: 20, borderRadius: '50%', borderColor: '#0E95B9', width: 30, height: 30, borderWidth: 4}}></View> */}
-                        <FontAwesome name="comment-o" size={30} color="white" style={{width: '100%', position: 'absolute', paddingLeft: 15, paddingBottom: 10, paddingTop: 11, height: '100%'}}/>
 
-                        <Text style={{fontWeight: 'bold', width: '50%', textAlign: 'right', fontSize: 16, color: 'white'}}>3</Text>
+                        <TouchableOpacity style={styles.commSec}>
+                            <FontAwesome name="comment-o" size={30} color="white" style={{width: '100%', position: 'absolute', paddingLeft: 15, paddingBottom: 10, paddingTop: 11, height: '100%'}}/>
+
+                            <Text style={{fontWeight: 'bold', width: '50%', textAlign: 'right', fontSize: 16, color: 'white'}}>3</Text>
+                        </TouchableOpacity>
+                       
+
+
                     </View>
                     <View style={styles.shareSec}>
                         {/* <View style={{marginTop: 20, borderColor: '#0E95B9', width: 30, height: 30, borderWidth: 4}}></View> */}
-                        <MaterialIcons name="ios-share" size={30} color="white" style={{width: '100%', position: 'absolute', paddingLeft: 15, paddingBottom: 10, paddingTop: 11, height: '100%'}}/>
+                        <TouchableOpacity style={styles.shareSec}>
 
-                        <Text style={{fontWeight: 'bold', width: '50%', textAlign: 'right', fontSize: 16, color: 'white'}}>1</Text>
+                            <MaterialIcons name="ios-share" size={30} color="white" style={{width: '100%', position: 'absolute', paddingLeft: 15, paddingBottom: 10, paddingTop: 11, height: '100%'}}/>
+
+                            <Text style={{fontWeight: 'bold', width: '50%', textAlign: 'right', fontSize: 16, color: 'white'}}>1</Text>
+
+                        </TouchableOpacity>
+                        
+
                     </View>
                 </View>
             </View>
 
-            <View style={styles.menu}>
+            {/* <View style={styles.menu}>
                 <TouchableOpacity style={{height: '100%', width: 134, alignItems: 'center', justifyContent: 'center', paddingBottom: 30}}>
                     <Ionicons name="home" size={30} color="white" />
                 </TouchableOpacity>
@@ -120,7 +114,7 @@ export default function Feed({navigation}){
                 <TouchableOpacity onPress={loadScene} style={{height: '100%', width: 134, alignItems: 'center', marginLeft: 2, justifyContent: 'center', paddingBottom: 30}}>
                     <MaterialCommunityIcons name="account-supervisor-circle-outline" size={35} color="white" />
                 </TouchableOpacity>
-            </View>
+            </View> */}
 
         </View>
     );
@@ -206,7 +200,7 @@ const styles = StyleSheet.create({
         height: 570, 
         marginLeft: 3,
         marginRight: 3,
-        marginTop: 10
+        marginTop: 20
     },
     buttonSec:{
         width: '100%',
@@ -240,7 +234,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
         marginLeft: 2,
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
 
@@ -255,7 +249,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
         marginLeft: 2,
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
     },
